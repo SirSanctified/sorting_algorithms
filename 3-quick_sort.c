@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include "sort.h"
 
-void swap(int *array, int a, int b);
+void swap(int *array, int a, int b, size_t size);
 int partition(int *array, int lb, int ub, size_t size);
 void q_sort(int *array, int lb, int ub, size_t size);
 
@@ -27,7 +27,7 @@ void quick_sort(int *array, size_t size)
  * @b: the second element
  */
 
-void swap(int *array, int a, int b)
+void swap(int *array, int a, int b, size_t size)
 {
 	if (array[a] != array[b])
 	{
@@ -60,10 +60,10 @@ int partition(int *array, int lb, int ub, size_t size)
 		if (array[i] < pivot)
 		{
 			j += 1;
-			swap(array, i, j);
+			swap(array, i, j, size);
 		}
 	}
-	swap(array, ub, j + 1);
+	swap(array, ub, j + 1, size);
 	return (j + 1);
 }
 

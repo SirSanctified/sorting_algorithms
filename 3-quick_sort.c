@@ -25,6 +25,7 @@ void quick_sort(int *array, size_t size)
  * @array: the array whose elements are to be swapped
  * @a: the first element
  * @b: the second element
+ * @size: size of the array
  */
 
 void swap(int *array, int a, int b, size_t size)

@@ -14,6 +14,8 @@ void q_sort(int *array, int lb, int ub, size_t size);
 
 void quick_sort(int *array, size_t size)
 {
+	if (array == NULL || size < 2)
+		return;
 
 	q_sort(array, 0, size - 1, size);
 }
@@ -33,6 +35,7 @@ void swap(int *array, int a, int b)
 
 		array[a] = array[b];
 		array[b] = temp;
+		print_array(array, size);
 	}
 }
 
@@ -54,14 +57,13 @@ int partition(int *array, int lb, int ub, size_t size)
 
 	for (i = lb; i < ub; i++)
 	{
-		if (array[i] <= pivot)
+		if (array[i] < pivot)
 		{
 			j += 1;
 			swap(array, i, j);
 		}
 	}
 	swap(array, ub, j + 1);
-	print_array(array, size);
 	return (j + 1);
 }
 

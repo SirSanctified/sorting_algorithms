@@ -2,9 +2,9 @@
 #include<stdlib.h>
 #include "sort.h"
 
-int partition(int *array, int lower_bound, int upper_bound, size_t size);
-void q_sort(int *array, int lb, int ub, size_t size);
 void swap(int *array, int a, int b);
+int partition(int *array, int lb, int ub, size_t size);
+void q_sort(int *array, int lb, int ub, size_t size);
 
 /**
  * quick_sort - sort an array of integers using quick sort algorithm
@@ -14,51 +14,47 @@ void swap(int *array, int a, int b);
 
 void quick_sort(int *array, size_t size)
 {
+
 	q_sort(array, 0, size - 1, size);
-	
-}
-
-int partition(int *array, int lower_bound, int upper_bound, size_t size)
-{
-	int pivot = array[upper_bound];
-	int start = lower_bound;
-	int end = upper_bound;
-
-	while(start < end)
-	{
-		while (array[start] <= pivot)
-		{
-			start++;
-		}
-		while (array[end] > pivot)
-		{
-			end--;
-		}
-		if (start < end)
-		{
-			swap(array, start, end);
-			print_array(array, size);
-		}
-	}
-	swap(array, lower_bound, end);
-	return end;
-}
-
-void q_sort(int *array, int lb, int ub, size_t size)
-{
-	int loc;
-
-	if (lb < ub)
-	{
-		loc = partition(array, lb, ub, size);
-		q_sort(array, lb, loc - 1, size);
-		q_sort(array, loc + 1, ub, size);
-	}
 }
 
 void swap(int *array, int a, int b)
 {
-	int temp = array[a];
-	array[a] = array[b];
-	array[b] = temp;
+	if (array[a] != array[b])
+	{
+		int temp = array[a];
+		array[a] = array[b];
+		array[b] = temp;
+	}
+}
+
+int partition(int *array, int lb, int ub, size_t size)
+{
+	int pivot = array[ub];
+	int j = lb - 1;
+	int i;
+
+	for (i = lb; i < ub; i++)
+	{
+		if (array[i] <= pivot)
+		{
+			j += 1;
+			swap(array, i, j);
+		}
+	}
+	swap(array, ub, j + 1);
+	print_array(array, size);
+	return j + 1;
+}
+
+void q_sort(int *array, int lb, int ub, size_t size)
+{
+	int part;
+
+	if (lb < ub)
+	{
+		part = partition(array, lb, ub, size);
+		q_sort(array, lb, part -1, size);
+		q_sort(array, part + 1, ub, size);
+	}
 }

@@ -16,18 +16,35 @@ void quick_sort(int *array, size_t size)
 {
 
 	q_sort(array, 0, size - 1, size);
-	print_array(array, size);
 }
+
+/**
+ * swap - swap array elements
+ * @array: the array whose elements are to be swapped
+ * @a: the first element
+ * @b: the second element
+ */
 
 void swap(int *array, int a, int b)
 {
 	if (array[a] != array[b])
 	{
 		int temp = array[a];
+
 		array[a] = array[b];
 		array[b] = temp;
 	}
 }
+
+/**
+ * partition - perform the lumuto partitioning
+ * @array: the array to partition
+ * @lb: the lower bound
+ * @ub: the upper bound
+ * @size: the size of the array
+ *
+ * Return: the position between two partitions
+ */
 
 int partition(int *array, int lb, int ub, size_t size)
 {
@@ -45,8 +62,16 @@ int partition(int *array, int lb, int ub, size_t size)
 	}
 	swap(array, ub, j + 1);
 	print_array(array, size);
-	return j + 1;
+	return (j + 1);
 }
+
+/**
+ * q_sort - perform the sorting
+ * @array: the array to sort
+ * @lb: the lower bound
+ * @ub: the upper bound
+ * @size:; the size of the array
+ */
 
 void q_sort(int *array, int lb, int ub, size_t size)
 {
@@ -55,7 +80,7 @@ void q_sort(int *array, int lb, int ub, size_t size)
 	if (lb < ub)
 	{
 		part = partition(array, lb, ub, size);
-		q_sort(array, lb, part -1, size);
+		q_sort(array, lb, part - 1, size);
 		q_sort(array, part + 1, ub, size);
 	}
 }

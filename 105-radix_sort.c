@@ -18,6 +18,7 @@ void radix_sort(int *array, size_t size)
 
 	if (array == NULL || size < 2)
 		return;
+
 	for (pos = 1; max / pos > 0; pos *= 10)
 	{
 		countSort(array, size, pos);
@@ -71,7 +72,7 @@ void countSort(int *array, size_t size, int position)
 
 	for (i = 0; i < size; i++)
 		array[i] = copy[i];
-	
+
 	free(copy);
 
 	print_array(array, size);

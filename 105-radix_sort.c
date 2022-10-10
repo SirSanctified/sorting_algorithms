@@ -60,13 +60,13 @@ void countSort(int *array, size_t size, int position)
 	size_t i;
 
 	for (i = 0; i < size; i++)
-		++count[(array[i] / position) % 10];
+		++count[((array[i] / position) % 10)];
 
 	for (i = 1; i < 10; i++)
 		count[i] = count[i] + count[i - 1];
 
 	for (i = size; i > 0; i--)
-		copy[--count[(array[i - 1] / position) % 10]] = array[i - 1];
+		copy[--count[((array[i - 1] / position) % 10)]] = array[i - 1];
 
 	for (i = 0; i < size; i++)
 		array[i] = copy[i];

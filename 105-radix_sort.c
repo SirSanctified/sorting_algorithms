@@ -19,7 +19,7 @@ void radix_sort(int *array, size_t size)
 	if (array == NULL || size < 2)
 		return;
 
-	for (pos = 1; max/pos > 0; pos *= 10)
+	for (pos = 1; max / pos > 0; pos *= 10)
 	{
 		countSort(array, size, pos);
 	}
@@ -29,6 +29,8 @@ void radix_sort(int *array, size_t size)
  * get_max - get the maximum element in an array
  * @array: the array to search for the maximum element
  * @size: the size of the array
+ *
+ * Return: the maximum value in an array
  */
 
 int get_max(int *array, size_t size)
